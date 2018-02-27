@@ -4,6 +4,7 @@ var app = {
         getNotes();
         $("#postNotes").click(postNotes);
         $("#deleteNota").click(deleteNota);
+        $("#editNota").click(editNota);
     }
 };
 app.initialize();
@@ -64,7 +65,7 @@ function editNota() {
         dataType: "jsonp",
         jsonp: "callback",
         url: "http://localhost/PHP_FILE/newEmptyPHP.php",
-        data: {tipus_consulta: "deleteNota", id_nota: idNota, text_nota: textNota},
+        data: {tipus_consulta: "editNota", id_nota: idNota, text_nota: textNota},
         success: function (result) {
             getNotes();
         }

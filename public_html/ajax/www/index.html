@@ -48,10 +48,20 @@
                 <th>NOTA</th>
             </tr>
         </table>
-        <form id="newNote">
-            TEXT NOTA: <input type="text" name="text_nota">
+        <div>
+            TEXT NOTA: <input type="text" id="text_nota">
             <button id="postNotes">envia</button>
-        </form>
+        </div>
+        <div>
+            INDICA EL ID DE LA NOTA A ELIMINAR: <input type="number" id="id_nota">
+            <button id="deleteNota">delete</button>
+        </div>
+        <div>
+            INDICA EL ID DE LA NOTA A EDITAR <input type="number" id="id_edit">
+            INDICA EL NUEVO TEXTO <input type="text" id="new_text">
+            
+            <button id="editNota">delete</button>
+        </div>
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
     </body>

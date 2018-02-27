@@ -3,6 +3,7 @@ var app = {
     initialize: function () {
         getNotes();
         $("#postNotes").click(postNotes);
+        $("#deleteNota").click(deleteNota);
     }
 };
 app.initialize();
@@ -12,8 +13,9 @@ function getNotes() {
         dataType: "jsonp",
         jsonp: "callback",
         url: "http://localhost/PHP_FILE/newEmptyPHP.php",
-        data: {"tipus_consulta": "getNotes"},
+        data: {tipus_consulta: "getNotes"},
         success: function (respJSON) {
+            $("#respAjax").html('');
             var codi = respJSON[0];
             console.log(codi);
             for (var i = 0; i < respJSON.length; i++) {
@@ -25,11 +27,46 @@ function getNotes() {
 }
 
 function postNotes() {
+    var nota = $("#text_nota").val();
     $.ajax({
         type: "GET",
         dataType: "jsonp",
         jsonp: "callback",
         url: "http://localhost/PHP_FILE/newEmptyPHP.php",
-        data: {"tipus_consulta": "postNotes"}
+        data: {tipus_consulta: "postNotes", text_nota: nota},
+        success: function (result) {
+            getNotes();
+        }
+    });
+}
+
+function deleteNota() {
+    console.log('hola');
+    var idNota = $("#id_nota").val();
+    $.ajax({
+        type: "GET",
+        dataType: "jsonp",
+        jsonp: "callback",
+        url: "http://localhost/PHP_FILE/newEmptyPHP.php",
+        data: {tipus_consulta: "deleteNota", id_nota: idNota},
+        success: function (result) {
+            $("#respAjax").html(idNota);
+            getNotes();
+        }
+    });
+}
+function editNota() {
+    console.log('hola');
+    var idNota = $("#id_edit").val();
+    var textNota = $("#new_text").val();
+    $.ajax({
+        type: "GET",
+        dataType: "jsonp",
+        jsonp: "callback",
+        url: "http://localhost/PHP_FILE/newEmptyPHP.php",
+        data: {tipus_consulta: "deleteNota", id_nota: idNota, text_nota: textNota},
+        success: function (result) {
+            getNotes();
+        }
     });
 }
